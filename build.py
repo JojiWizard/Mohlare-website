@@ -25,6 +25,9 @@ DIVS = [
  dict(k="fit", file="fit.html", name="Mohlare Fit", f="f-fit", img="fit.jpg", live=False,
   tag="Fitness & Wellness", lead="Healthy body, healthy mind, healthy soul. Training and wellness built around real life.",
   pts=["Coaching and training programmes", "Wellness for body, mind and soul", "Launching soon"],
+  services=[("Fitness Coach for Hire", "Book a personal coach for one-on-one sessions, built around your goals and your schedule."),
+            ("Workout Equipment for Hire", "Hire the equipment you need for home training, without buying it outright."),
+            ("Sports Clothing", "Performance wear made to move with you, from the gym to the street.")],
   cta="Start your journey", cta2="Join the early list"),
  dict(k="wear", file="wear.html", name="Mohlare Wear", f="f-wear", img="wear.jpg", live=False,
   tag="Fashion", lead="Bold, confident, unmistakably South African. Fashion made to be seen.",
@@ -98,6 +101,8 @@ def division(i):
 <h3 class="rv">How it works</h3><ol class="steps rv"><li>Reach out on WhatsApp or email</li><li>A quick chat to understand the learner&rsquo;s needs</li>
 <li>A personal tutoring plan for the grade and subjects</li><li>Regular sessions with simple progress updates</li></ol>'''
     else:
+        if d.get("services"):
+            s += '<h3 class="rv">What we offer</h3><div class="cards bands rv">' + "".join(f"<div class=\"card\"><b>{t}</b>{x}</div>" for t, x in d["services"]) + '</div>'
         s += f'<h3 class="rv">What to expect</h3><ul class="rv" style="list-style:none;display:grid;gap:8px">{li(d["pts"])}</ul>'
     s += f'''<div class="cta rv"><h3>{d["cta"]}</h3><p style="color:var(--mute);margin-bottom:16px">{"Spaces are open now. Tell us the grade and subjects and we will take it from there." if d["live"] else "This branch is launching soon. Leave a message and we will let you know first."}</p>
 <a class="btn solid" target="_blank" rel="noopener" href="{wa("Hi Mohlare Group, I am interested in " + d["name"])}">{d["cta2"]}</a>
